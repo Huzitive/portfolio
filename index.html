@@ -10,13 +10,10 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   <style>
     :root{
-      --bg:#0b0f14;--card:#0f1620;--muted:#b1c1d1;--text:#eaf2fb;--brand:#7dc4ff;--brand-2:#9ef0c4;--line:#1d2733;--chip:#16202c;--shadow:0 10px 30px rgba(0,0,0,.35);--radius:16px;--radius-lg:22px;--nav-h:58px;
-      --step--2: clamp(11px, .75rem + .1vw, 12px);
+      --bg:#0b0f14;--card:#0f1620;--muted:#b1c1d1;--text:#eaf2fb;--brand:#7dc4ff;--brand-2:#9ef0c4;--line:#1d2733;--chip:#16202c;--shadow:0 10px 30px rgba(0,0,0,.35);--radius:16px;--radius-lg:22px;
       --step--1: clamp(12px, .85rem + .2vw, 14px);
       --step-0: clamp(14px, .95rem + .2vw, 16px);
-      --step-1: clamp(18px, 1.1rem + .4vw, 20px);
       --step-2: clamp(22px, 1.25rem + .8vw, 28px);
-      --step-3: clamp(28px, 1.6rem + 1.6vw, 40px);
       --step-4: clamp(36px, 2rem + 2.2vw, 56px);
     }
     [data-theme="light"]{
@@ -27,152 +24,99 @@
     body{
       margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,"Apple Color Emoji","Segoe UI Emoji";
       color:var(--text);
-      background:radial-gradient(1200px 700px at 10% -10%, rgba(125,196,255,.12), transparent 60%),
-                 radial-gradient(1000px 600px at 90% -20%, rgba(158,240,196,.12), transparent 60%),var(--bg);
+      background:
+        radial-gradient(1200px 700px at 10% -10%, rgba(125,196,255,.12), transparent 60%),
+        radial-gradient(1000px 600px at 90% -20%, rgba(158,240,196,.12), transparent 60%),
+        var(--bg);
       line-height:1.6;scroll-behavior:smooth;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale
     }
     a{color:inherit;text-decoration:none}
     .container{width:min(1100px,92vw);margin:0 auto}
-    /* NAVBAR */
-    .nav{position:sticky;top:0;z-index:50;backdrop-filter:saturate(120%) blur(10px);background:color-mix(in oklab, var(--bg) 85%, transparent);border-bottom:1px solid var(--line)}
-    .nav-inner{display:flex;align-items:center;justify-content:space-between;padding:12px 0;min-height:var(--nav-h)}
-    .brand{display:flex;align-items:center;gap:12px;font-weight:700;letter-spacing:.3px}
-    .brand .logo{width:28px;height:28px;border-radius:8px;background:linear-gradient(135deg,var(--brand),var(--brand-2));box-shadow:var(--shadow)}
-    .nav a.link{opacity:.9;padding:8px 12px;border-radius:10px}
-    .nav a.link:hover,.nav a.link[aria-current="page"]{background:var(--chip)}
-    .nav-actions{display:flex;align-items:center;gap:10px}
-    .btn{display:inline-flex;align-items:center;gap:8px;cursor:pointer;border:1px solid var(--line);background:var(--card);color:var(--text);padding:10px 14px;border-radius:12px;transition:transform .06s ease, background .2s ease, border-color .2s ease}
-    .btn:hover{transform:translateY(-1px);border-color:color-mix(in oklab, var(--brand) 60%, var(--line))}
-    .btn.primary{background:linear-gradient(135deg,color-mix(in oklab, var(--brand) 25%, var(--card)),color-mix(in oklab, var(--brand-2) 25%, var(--card)));border:1px solid color-mix(in oklab, var(--brand) 30%, var(--line))}
-    .btn:focus-visible{outline:2px solid var(--brand);outline-offset:2px}
 
-    /* MOBILE NAV */
-    .nav-wrap{display:flex;align-items:center;gap:12px}
-    .primary-nav{display:flex;align-items:center;gap:4px}
-    .menu-toggle{display:none}
-    @media (max-width: 860px){
-      .primary-nav{position:fixed;left:0;right:0;top:calc(var(--nav-h));display:none;flex-direction:column;gap:0;background:color-mix(in oklab, var(--bg) 92%, transparent);border-bottom:1px solid var(--line);padding:8px 12px 12px}
-      .primary-nav.open{display:flex;animation:menuIn .22s ease}
-      .primary-nav .link{width:100%;padding:12px;border-radius:10px}
-      .menu-toggle{display:inline-flex}
-      .nav-actions .btn.primary{display:none}
+    /* Floating theme toggle */
+    .theme-fab{
+      position:fixed; right:16px; top:16px; z-index:100;
+      display:inline-flex; align-items:center; gap:8px;
+      cursor:pointer; border:1px solid var(--line); background:var(--card); color:var(--text);
+      padding:10px 12px; border-radius:12px; box-shadow:var(--shadow);
+      transition:transform .06s ease, background .2s ease, border-color .2s ease;
     }
-    @keyframes menuIn{from{opacity:.001;transform:translateY(-4px)}to{opacity:1;transform:translateY(0)}}
+    .theme-fab:hover{ transform:translateY(-1px); border-color:color-mix(in oklab, var(--brand) 60%, var(--line)); }
+    .theme-fab:focus-visible{ outline:2px solid var(--brand); outline-offset:2px; }
 
-    /* HERO */
-    .hero{padding: clamp(28px, 6vw, 60px) 0 30px;display:grid;grid-template-columns:1.2fr .8fr;gap:24px;align-items:center}
-    .hero .kicker{color:var(--brand);font-weight:700;letter-spacing:.12em;text-transform:uppercase;font-size:var(--step--1)}
-    .hero h1{font-size:var(--step-4);line-height:1.1;margin:10px 0 14px}
-    .hero p{color:var(--muted);font-size:var(--step-0)}
-    .hero .cta{margin-top:18px;display:flex;gap:10px;flex-wrap:wrap}
-    .card{background:color-mix(in oklab, var(--card) 88%, transparent);border:1px solid var(--line);border-radius:var(--radius-lg);box-shadow:var(--shadow)}
-    .avatar-card{padding:22px;display:grid;place-items:center;text-align:center}
-    .avatar{width:120px;height:120px;border-radius:28px;background:linear-gradient(135deg,var(--brand),var(--brand-2));display:grid;place-items:center;font-weight:800;font-size:40px;color:#0b1117}
-    .avatar small{display:block;margin-top:10px;color:var(--muted)}
-
-    /* SECTIONS */
-    section{padding:26px 0;scroll-margin-top:calc(var(--nav-h) + 16px)}
-    .section-title{display:flex;align-items:center;gap:10px;margin-bottom:14px}
-    .section-title h2{font-size:var(--step-2);margin:0}
-    .divider{height:1px;background:linear-gradient(90deg, transparent, var(--line), transparent);margin:10px 0 16px}
-
-    .grid{display:grid;gap:14px}
-    .grid.cols-2{grid-template-columns:repeat(2,1fr)}
-    .grid.cols-3{grid-template-columns:repeat(3,1fr)}
-
-    /* CHIPS */
-    .chips{display:flex;flex-wrap:wrap;gap:8px}
-    .chip{background:var(--chip);border:1px solid var(--line);padding:8px 10px;border-radius:999px;font-size:13px}
-
-    /* TIMELINE */
-    .timeline{position:relative;padding-left:20px}
-    .timeline:before{content:"";position:absolute;left:8px;top:0;bottom:0;width:2px;background:var(--line)}
-    .t-item{position:relative;padding:12px 14px 14px 16px;margin-left:10px;border:1px solid var(--line);border-radius:var(--radius);background:var(--card)}
-    .t-item + .t-item{margin-top:10px}
-    .t-item:before{content:"";position:absolute;left:-12px;top:18px;width:10px;height:10px;border-radius:999px;background:linear-gradient(135deg,var(--brand),var(--brand-2));box-shadow:0 0 0 3px var(--bg)}
-    .t-role{font-weight:700}
-    .t-meta{color:var(--muted);font-size:13px}
-
-    /* PROJECT CARDS */
-    .p-card{padding:16px;border:1px solid var(--line);border-radius:var(--radius);background:var(--card);display:grid;gap:8px}
-    .p-card a.tag{width:fit-content;font-size:12px;background:linear-gradient(135deg,color-mix(in oklab, var(--brand) 18%, var(--chip)),color-mix(in oklab, var(--brand-2) 18%, var(--chip)));padding:6px 10px;border-radius:999px;border:1px solid var(--line)}
-
-    /* DETAILS (dropdowns) */
-    details{border:1px solid var(--line);background:var(--card);border-radius:var(--radius);padding:10px 14px}
-    summary{cursor:pointer;font-weight:600;list-style:none;outline:none;position:relative;padding-right:20px}
-    summary::-webkit-details-marker{display:none}
-    summary::after{content:"";position:absolute;right:0;top:50%;transform:translateY(-50%) rotate(0deg);width:10px;height:10px;border-right:2px solid var(--muted);border-bottom:2px solid var(--muted);transform-origin:60% 60%;transition:transform .2s ease}
-    details[open] summary::after{transform:translateY(-50%) rotate(45deg)}
-    details>ul{margin:10px 0 0 18px}
-
-    /* FOOTER */
-    footer{color:var(--muted);padding:40px 0 60px;text-align:center}
-
-    /* UTILITIES */
-    .muted{color:var(--muted)}
-    .row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
-    .icon{width:18px;height:18px;display:inline-block}
-
-    /* REDUCED MOTION */
-    @media (prefers-reduced-motion: reduce){
-      *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+    /* Buttons */
+    .btn{
+      display:inline-flex; align-items:center; gap:8px; cursor:pointer;
+      border:1px solid var(--line); background:var(--card); color:var(--text);
+      padding:10px 14px; border-radius:12px;
+      transition:transform .06s ease, background .2s ease, border-color .2s ease;
     }
-
-    /* RESPONSIVE BREAKPOINTS */
-    @media (max-width: 1024px){
-      .container{width:min(980px,92vw)}
+    .btn:hover{ transform:translateY(-1px); border-color:color-mix(in oklab, var(--brand) 60%, var(--line)); }
+    .btn.primary{
+      background:linear-gradient(135deg, color-mix(in oklab, var(--brand) 25%, var(--card)), color-mix(in oklab, var(--brand-2) 25%, var(--card)));
+      border:1px solid color-mix(in oklab, var(--brand) 30%, var(--line));
     }
+    .btn:focus-visible{ outline:2px solid var(--brand); outline-offset:2px; }
+
+    /* Hero */
+    .hero{ padding: clamp(28px, 7vw, 72px) 0 30px; display:grid; grid-template-columns:1fr; gap:24px; align-items:center; }
+    .hero .kicker{ color:var(--brand); font-weight:700; letter-spacing:.12em; text-transform:uppercase; font-size:var(--step--1); }
+    .hero h1{ font-size:var(--step-4); line-height:1.1; margin:10px 0 14px; }
+    .hero p{ color:var(--muted); font-size:var(--step-0); }
+    .hero .cta{ margin-top:18px; display:flex; gap:10px; flex-wrap:wrap; }
+
+    /* Cards/sections */
+    .card{ background:color-mix(in oklab, var(--card) 88%, transparent); border:1px solid var(--line); border-radius:var(--radius-lg); box-shadow:var(--shadow); }
+    section{ padding:26px 0; }
+    .section-title{ display:flex; align-items:center; gap:10px; margin-bottom:14px; }
+    .section-title h2{ font-size:var(--step-2); margin:0; }
+    .divider{ height:1px; background:linear-gradient(90deg, transparent, var(--line), transparent); margin:10px 0 16px; }
+
+    .grid{ display:grid; gap:14px; }
+    .grid.cols-2{ grid-template-columns:repeat(2,1fr); }
+    .grid.cols-3{ grid-template-columns:repeat(3,1fr); }
+
+    .chips{ display:flex; flex-wrap:wrap; gap:8px; }
+    .chip{ background:var(--chip); border:1px solid var(--line); padding:8px 10px; border-radius:999px; font-size:13px; }
+
+    /* Timeline */
+    .timeline{ position:relative; padding-left:20px; }
+    .timeline:before{ content:""; position:absolute; left:8px; top:0; bottom:0; width:2px; background:var(--line); }
+    .t-item{ position:relative; padding:12px 14px 14px 16px; margin-left:10px; border:1px solid var(--line); border-radius:var(--radius); background:var(--card); }
+    .t-item + .t-item{ margin-top:10px; }
+    .t-item:before{ content:""; position:absolute; left:-12px; top:18px; width:10px; height:10px; border-radius:999px; background:linear-gradient(135deg, var(--brand), var(--brand-2)); box-shadow:0 0 0 3px var(--bg); }
+    .t-role{ font-weight:700; }
+    .t-meta{ color:var(--muted); font-size:13px; }
+
+    /* Details (dropdowns) */
+    details{ border:1px solid var(--line); background:var(--card); border-radius:var(--radius); padding:10px 14px; }
+    summary{ cursor:pointer; font-weight:600; list-style:none; outline:none; position:relative; padding-right:20px; }
+    summary::-webkit-details-marker{ display:none; }
+    summary::after{ content:""; position:absolute; right:0; top:50%; transform:translateY(-50%) rotate(0deg); width:10px; height:10px; border-right:2px solid var(--muted); border-bottom:2px solid var(--muted); transform-origin:60% 60%; transition:transform .2s ease; }
+    details[open] summary::after{ transform:translateY(-50%) rotate(45deg); }
+    details>ul{ margin:10px 0 0 18px; }
+
+    footer{ color:var(--muted); padding:40px 0 60px; text-align:center; }
+
+    /* Responsive */
     @media (max-width: 900px){
-      .hero{grid-template-columns:1fr}
-      .grid.cols-2{grid-template-columns:1fr}
-      .grid.cols-3{grid-template-columns:1fr}
-      .avatar{width:100px;height:100px;font-size:32px}
-    }
-    @media (max-width: 600px){
-      :root{--nav-h:56px}
-      .container{width:92vw}
-      .hero .cta .btn{flex:1 1 auto;justify-content:center}
-      .btn{padding:12px 14px}
-      .t-item{padding:12px}
-      .timeline{padding-left:14px}
-      .timeline:before{left:6px}
-      .t-item:before{left:-10px}
-      .section-title h2{font-size:clamp(18px, 4.5vw, 22px)}
-      .grid{gap:12px}
+      .grid.cols-2{ grid-template-columns:1fr; }
+      .grid.cols-3{ grid-template-columns:1fr; }
+      .hero .cta .btn{ flex:1 1 auto; justify-content:center; }
     }
     @media (max-width: 380px){
-      .brand span{font-size:14px}
-      .btn{padding:10px 12px}
-      .nav a.link{padding:10px 12px}
+      .theme-fab{ right:12px; top:12px; padding:8px 10px; }
+    }
+
+    /* Reduced motion */
+    @media (prefers-reduced-motion: reduce){
+      *{ animation:none!important; transition:none!important; scroll-behavior:auto!important; }
     }
   </style>
 </head>
 <body>
-  <header class="nav">
-    <div class="container nav-inner">
-      <div class="brand">
-        <div class="logo" aria-hidden="true"></div>
-        <span>Huzaifa Ahmed Khan</span>
-      </div>
-
-      <div class="nav-wrap">
-        <button class="btn menu-toggle" id="menuToggle" type="button" aria-expanded="false" aria-controls="primaryNav" aria-label="Open menu">☰</button>
-        <nav id="primaryNav" class="primary-nav row" aria-label="Primary">
-          <a class="link" href="#about">About</a>
-          <a class="link" href="#skills">Skills</a>
-          <a class="link" href="#experience">Experience</a>
-          <a class="link" href="#projects">Projects</a>
-          <a class="link" href="#certs">Certifications</a>
-          <a class="link" href="#contact">Contact</a>
-        </nav>
-      </div>
-
-      <div class="nav-actions">
-        <button id="themeToggle" class="btn" type="button" aria-label="Toggle theme">🌓</button>
-        <a class="btn primary" href="./CV.pdf" download="Huzaifa_Ahmed_Khan_CV.pdf" aria-label="Download CV">⬇️ Download CV</a>
-      </div>
-    </div>
-  </header>
+  <!-- Floating theme toggle, no navbar anywhere -->
+  <button id="themeToggle" class="theme-fab" type="button" aria-label="Toggle theme">🌓</button>
 
   <main class="container">
     <section class="hero">
@@ -186,11 +130,9 @@
           <a class="btn primary" href="mailto:huzaifasai03941@gmail.com" rel="noopener noreferrer">✉️ Email</a>
           <a class="btn" href="#projects">View Projects</a>
           <a class="btn" href="#contact">Contact</a>
+          <!-- Download CV placed after Email/Projects/Contact as requested -->
+          <a class="btn" href="./CV.pdf" download="Huzaifa_Ahmed_Khan_CV.pdf" aria-label="Download CV"> Download CV</a>
         </div>
-      </div>
-      <div class="avatar-card card">
-        <div class="avatar" aria-label="Monogram">HK</div>
-        <small>Karachi, Sindh, Pakistan</small>
       </div>
     </section>
 
@@ -211,6 +153,8 @@
             <a class="btn" href="https://github.com/huzitive" target="_blank" rel="noopener noreferrer">GitHub</a>
             <a class="btn" href="tel:+923336706997">Call</a>
             <a class="btn" href="mailto:huzaifasai03941@gmail.com" rel="noopener noreferrer">Email</a>
+            <!-- Also provide CV download in About links for convenience -->
+            <a class="btn" href="./CV.pdf" download="Huzaifa_Ahmed_Khan_CV.pdf" aria-label="Download CV"> Download CV</a>
           </div>
         </div>
       </div>
@@ -302,7 +246,7 @@
       <div class="divider"></div>
       <div class="grid cols-2">
         <article class="p-card">
-          <header class="row" style="justify-content:space-between;">
+          <header class="row" style="justify-content: space-between;">
             <strong>Physics Simulation Website</strong>
             <a class="tag" href="https://github.com/Huzitive/neduet-physics-dept-sim-pckg" target="_blank" rel="noopener noreferrer">GitHub</a>
           </header>
@@ -312,7 +256,7 @@
           </div>
         </article>
         <article class="p-card">
-          <header class="row" style="justify-content:space-between;">
+          <header class="row" style="justify-content: space-between;">
             <strong>Exploring Resonance</strong>
             <a class="tag" href="https://github.com/Huzitive/Resonance104" target="_blank" rel="noopener noreferrer">GitHub</a>
           </header>
@@ -358,7 +302,7 @@
     </section>
 
     <section id="memberships">
-      <div class="section-title"><h2>Memberships & Affiliations</h2><span class="muted">community</span></div>
+      <div class="section-title"><h2>Memberships & Affiliation</h2><span class="muted">community</span></div>
       <div class="divider"></div>
       <div class="grid cols-2">
         <div class="card" style="padding:16px">
@@ -404,26 +348,25 @@
   </footer>
 
   <script>
-    // Theme: respect saved pref; else respect system; default dark.
+    // Theme: respect saved pref; else system; default dark.
     const toggle = document.getElementById('themeToggle');
     const saved = localStorage.getItem('theme');
     const prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
     const setTheme = m => { document.body.setAttribute('data-theme', m); localStorage.setItem('theme', m); };
     if (saved === 'light' || saved === 'dark') document.body.setAttribute('data-theme', saved);
     else if (prefersLight) document.body.setAttribute('data-theme', 'light');
-
     toggle.addEventListener('click', () => {
       const next = document.body.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
       setTheme(next);
     });
 
-    // Dynamic year
+    // Year
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // Reveal on scroll (skip <details> to avoid dropdown jitter)
+    // Reveal on scroll (skip <details>)
     const reveal = el => {
-      const io = new IntersectionObserver((entries) => {
-        entries.forEach((e) => {
+      const io = new IntersectionObserver(entries => {
+        entries.forEach(e => {
           if (e.isIntersecting) {
             e.target.animate(
               [{ transform:'translateY(8px)', opacity:.001 }, { transform:'translateY(0)', opacity:1 }],
@@ -432,52 +375,10 @@
             io.unobserve(e.target);
           }
         });
-      },{ threshold:.08 });
+      }, { threshold:.08 });
       io.observe(el);
     };
     document.querySelectorAll('section, .p-card, .t-item, .card:not(details)').forEach(reveal);
-
-    // Active nav highlight
-    const navLinks = Array.from(document.querySelectorAll('.primary-nav .link'));
-    const setActive = () => {
-      const hash = window.location.hash || '';
-      navLinks.forEach(a => a.setAttribute('aria-current', a.getAttribute('href') === hash ? 'page' : 'false'));
-    };
-    window.addEventListener('hashchange', setActive); setActive();
-
-    // Keyboard focus after in-page nav
-    navLinks.forEach(a => {
-      a.addEventListener('click', () => {
-        const id = a.getAttribute('href');
-        if (id?.startsWith('#')) {
-          const target = document.querySelector(id);
-          if (target) setTimeout(() => { target.setAttribute('tabindex','-1'); target.focus({ preventScroll:true }); }, 300);
-        }
-        // close menu after click on mobile
-        primaryNav.classList.remove('open');
-        menuToggle.setAttribute('aria-expanded','false');
-      });
-    });
-
-    // Mobile menu
-    const menuToggle = document.getElementById('menuToggle');
-    const primaryNav = document.getElementById('primaryNav');
-    const toggleMenu = () => {
-      const open = primaryNav.classList.toggle('open');
-      menuToggle.setAttribute('aria-expanded', String(open));
-      menuToggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
-    };
-    menuToggle.addEventListener('click', toggleMenu);
-
-    // Close menu when resizing up, or when clicking outside
-    const mq = window.matchMedia('(min-width: 861px)');
-    mq.addEventListener?.('change', e => { if (e.matches) primaryNav.classList.remove('open'); });
-    document.addEventListener('click', (e) => {
-      if (!primaryNav.contains(e.target) && !menuToggle.contains(e.target)) {
-        primaryNav.classList.remove('open');
-        menuToggle.setAttribute('aria-expanded','false');
-      }
-    });
   </script>
 </body>
 </html>
