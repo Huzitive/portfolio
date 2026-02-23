@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Huzaifa Ahmed Khan | Blogs</title>
+<link rel="icon" type="image/png" href="atom.png">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+    --bg: #ffffff;
+    --text: #111111;
+    --secondary: #555555;
+    --card: #f5f5f5;
+    --border: #e0e0e0;
+}
+
+body.dark {
+    --bg: #0f0f0f;
+    --text: #f5f5f5;
+    --secondary: #bbbbbb;
+    --card: #1a1a1a;
+    --border: #2a2a2a;
+}
+
+body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    margin:0;
+    padding:0;
+    transition: 0.3s ease;
+}
+
+.container {
+    max-width: 1000px;
+    margin:auto;
+    padding:40px 20px;
+}
+
+header {
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap: wrap;
+    margin-bottom:40px;
+    gap:15px;
+}
+
+h1 {
+    font-size:28px;
+    font-weight:700;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.subtitle {
+    color: var(--secondary);
+    font-size:14px;
+}
+
+.grid {
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap:20px;
+}
+
+.card {
+    background: var(--card);
+    padding:20px;
+    border:1px solid var(--border);
+    border-radius:10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+}
+
+.card h3 {
+    margin-bottom:10px;
+    font-size:18px;
+}
+
+.card p {
+    font-size:14px;
+    color: var(--secondary);
+}
+
+a {
+    text-decoration:none;
+    color: inherit;
+}
+
+footer {
+    text-align:center;
+    font-size:13px;
+    color: var(--secondary);
+    margin-top:40px;
+}
+
+button {
+    padding:8px 16px;
+    border:1px solid var(--text);
+    background:transparent;
+    color: var(--text);
+    cursor:pointer;
+    font-size:14px;
+    border-radius:5px;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    header > div:last-child {
+        width: 100%;
+        display: flex;
+        justify-content: flex-start;
+        gap: 10px;
+        flex-wrap: wrap;
+    }
+
+    .grid {
+        grid-template-columns: 1fr; /* stack cards vertically */
+        gap: 15px;
+    }
+
+    h1 {
+        font-size:24px;
+    }
+
+    .card h3 {
+        font-size:16px;
+    }
+
+    .card p {
+        font-size:13px;
+    }
+
+    button {
+        font-size:13px;
+        padding:6px 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size:20px;
+    }
+    .subtitle {
+        font-size:12px;
+    }
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+
+<header>
+    <div>
+        <h1>
+            <img src="quill.png" alt="Blogs Icon" style="width:40px; height:40px; object-fit:contain;">
+            Blogs & Insights
+        </h1>
+        <div class="subtitle">Opinions, critiques, and sarcastic wisdom from the trenches of corporate & tech life</div>
+    </div>
+    <div style="display:flex; gap:10px;">
+        <a href="index.html"><button>Back to Portfolio</button></a>
+        <button onclick="document.body.classList.toggle('dark')">Dark Mode</button>
+    </div>
+</header>
+
+<section>
+    <div class="grid">
+        <div class="card">
+            <h3>How to Make a CV from Scratch (for University Students)</h3>
+            <p>
+                Step-by-step guide for university students on building a strong CV from scratch, including tips on formatting, highlighting skills, and showcasing experience effectively—even with little to no prior work history.
+            </p>
+            <a href="https://share.note.sx/04ijj8gg#6MjkNwhAOKHrhsV3h4ey6LBp1tLgf3/v1ZIIAHvpe88">Read More →</a>
+        </div>
+    </div>
+</section>
+
+<footer>
+    © 2026 Huzaifa Ahmed Khan
+</footer>
+
+</div>
+</body>
+</html>

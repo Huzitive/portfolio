@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Huzaifa Ahmed Khan | Portfolio</title>
+<link rel="icon" type="image/png" href="atom.png">
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+#blogs .card h3 a:hover {
+    color: #007acc; /* subtle highlight for blog links */
+}
+
+/* Smooth scroll */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Paper card hover effect */
+.card {
+    transition: all 0.25s ease;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    border: 1px solid var(--text);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+}
+
+.card h3 a {
+    transition: color 0.25s ease;
+}
+
+.card:hover h3 a {
+    color: #777;
+}
+
+/* Root variables */
+:root {
+    --bg: #ffffff;
+    --text: #111111;
+    --secondary: #555555;
+    --card: #f5f5f5;
+    --border: #e0e0e0;
+    --active: #0077cc; /* Highlight color */
+}
+
+body.dark {
+    --bg: #0f0f0f;
+    --text: #f5f5f5;
+    --secondary: #bbbbbb;
+    --card: #1a1a1a;
+    --border: #2a2a2a;
+    --active: #3399ff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    transition: 0.3s ease;
+}
+
+.container {
+    max-width: 1100px;
+    margin: auto;
+    padding: 40px 20px;
+}
+
+/* Header */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 60px;
+    flex-wrap: wrap;
+}
+
+h1 {
+    font-size: 28px;
+    font-weight: 700;
+}
+
+.subtitle {
+    color: var(--secondary);
+    font-size: 14px;
+}
+
+button {
+    padding: 8px 16px;
+    background: transparent;
+    border: 1px solid var(--text);
+    color: var(--text);
+    cursor: pointer;
+    font-size: 14px;
+}
+
+/* Navigation bar */
+.navbar {
+    position: sticky;
+    top: 0;
+    background: var(--bg);
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    z-index: 100;
+}
+
+.navbar a {
+    text-decoration: none;
+    color: var(--text);
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+.navbar a:hover,
+.navbar a.active {
+    color: var(--active);
+}
+
+section {
+    margin-bottom: 60px;
+}
+
+.section-title {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 8px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.card {
+    background: var(--card);
+    padding: 20px;
+    border: 1px solid var(--border);
+}
+
+.card h3 {
+    font-size: 16px;
+    margin-bottom: 6px;
+}
+
+.card p {
+    font-size: 14px;
+    color: var(--secondary);
+}
+
+/* Back to Top Button */
+#backTop {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    padding: 10px 15px;
+    border: none;
+    background: var(--text);
+    color: var(--bg);
+    cursor: pointer;
+    border-radius: 5px;
+    display: none;
+    z-index: 100;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    font-size: 13px;
+    color: var(--secondary);
+    margin-top: 40px;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    /* Navbar becomes horizontally scrollable */
+    .navbar {
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        overflow-x: auto;
+        padding: 10px 10px;
+        gap: 10px;
+    }
+    .navbar a {
+        flex: 0 0 auto;
+        padding: 5px 10px;
+        font-size: 14px;
+    }
+
+    /* Header stacks vertically */
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+    }
+
+    header > div:last-child {
+        width: 100%;
+        display: flex;
+        justify-content: flex-start;
+        gap: 10px;
+    }
+
+    /* Grid layout for sections */
+    .grid {
+        grid-template-columns: 1fr; /* single column for small screens */
+        gap: 15px;
+    }
+
+    /* Card padding smaller */
+    .card {
+        padding: 15px;
+    }
+
+    /* Fonts scale down */
+    h1 {
+        font-size: 24px;
+    }
+    .section-title {
+        font-size: 18px;
+    }
+    .card h3 {
+        font-size: 16px;
+    }
+    .card p {
+        font-size: 13px;
+    }
+
+    /* Back to top button smaller */
+    #backTop {
+        padding: 8px 12px;
+        bottom: 20px;
+        right: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 20px;
+    }
+    .section-title {
+        font-size: 16px;
+    }
+    button {
+        font-size: 13px;
+        padding: 6px 12px;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="navbar">
+    <a href="#about">About</a>
+    <a href="#experience">Experience</a>
+    <a href="#skills">Skills</a> 
+    <a href="#projects">Projects</a>
+    <a href="#certifications">Certifications</a>
+    <a href="#papers">Papers</a>
+    <a href="blogs.html">Blogs</a>
+    <a href="#contact">Contact</a>
+</div>
+
+<div class="container">
+
+<header>
+    <div style="display:flex; align-items:center; gap:15px;">
+        <img src="atom.png" alt="Logo" style="width:60px; height:60px; object-fit:contain;">
+        <div>
+            <h1>Huzaifa Ahmed Khan</h1>
+            <div class="subtitle">Professional problem solver — especially the avoidable ones</div>
+            <div class="subtitle">Karachi Division, Sindh, Pakistan</div>
+        </div>
+    </div>
+
+    <div style="display:flex; gap:10px;">
+        <a href="Huzaifa_Ahmed_Khan_CV.pdf" download>
+            <button>Download CV</button>
+        </a>
+        <button onclick="toggleDarkMode()">Dark Mode</button>
+    </div>
+</header>
+
+<section id="about">
+    <div class="section-title">About</div>
+    <p>
+        Physics undergraduate focused on computational physics, computer vision, scientific computing,
+        aerospace systems, sensors, AI/ML, cybersecurity, and applied mathematics.
+    </p>
+</section>
+
+<section id="experience">
+    <div class="section-title">Experience</div>
+    <div class="grid">
+        <div class="card">
+            <h3>Computer Vision Engineer — Arch Technologies</h3>
+            <p>Developing CV-based solutions and applied AI systems.</p>
+        </div>
+        <div class="card">
+            <h3>Creative Director — Media Core</h3>
+            <p>Founded media solutions company delivering branding and digital content.</p>
+        </div>
+        <div class="card">
+            <h3>Physics Simulation Intern — NEDUET</h3>
+            <p>Built interactive physics simulations using JS, Chart.js, p5.js, MathJax.</p>
+        </div>
+        <div class="card">
+            <h3>Graphic Designer — Hi-Tech Machinery</h3>
+            <p>Catalogues, corporate design, industrial branding assets.</p>
+        </div>
+    </div>
+</section>
+<section id="skills">
+    <div class="section-title">Skills</div>
+    <div class="grid">
+
+        <div class="card">
+            <h3>Programming Languages</h3>
+            <p>Python, C++, C, JavaScript, HTML, CSS</p>
+        </div>
+
+        <div class="card">
+            <h3>Scientific & Engineering Computing</h3>
+            <p>NumPy, SciPy, MATLAB, PyTorch, CFD, FEM, Scientific Modeling & Simulation</p>
+        </div>
+
+        <div class="card">
+            <h3>Machine Learning & Computer Vision</h3>
+            <p>Machine Learning, Computer Vision, Deep Learning (PyTorch), Data Analysis, Feature Engineering, Model Evaluation</p>
+        </div>
+
+        <div class="card">
+            <h3>Visualization & Web Technologies</h3>
+            <p>p5.js, Chart.js, MathJax, Interactive Scientific Visualization, Web-based Simulations</p>
+        </div>
+
+        <div class="card">
+            <h3>Tools & Platforms</h3>
+            <p>Git, LATEX, SolidWorks, MATLAB Simulink, Adobe Creative Cloud, Microsoft Office, Google Workspace</p>
+        </div>
+
+        <div class="card">
+            <h3>Security & Systems (Foundational)</h3>
+            <p>Applied Cryptography, Cybersecurity Fundamentals, OSINT, Threat Intelligence</p>
+        </div>
+
+        <div class="card">
+            <h3>Soft Skills</h3>
+            <p>Research-Oriented Problem Solving, Analytical Thinking, Technical Communication, Leadership, Cross-disciplinary Collaboration</p>
+        </div>
+
+    </div>
+</section>
+<section id="projects">
+    <div class="section-title">Projects</div>
+    <div class="grid">
+        <div class="card">
+            <h3>Physics Simulation Package</h3>
+            <p>Interactive wave motion, resonance, pendulum simulations for undergraduates.</p>
+        </div>
+        <div class="card">
+            <h3>Resonance Web Exhibition</h3>
+            <p>Physics exhibition project visualizing resonance with dynamic graphs.</p>
+        </div>
+        <div class="card">
+            <h3>CFD — Airflow Around Spoiler</h3>
+            <p>Velocity field and pressure distribution analysis.</p>
+        </div>
+        <div class="card">
+            <h3>FEM Analysis</h3>
+            <p>Linear and nonlinear stress–strain simulations.</p>
+        </div>
+    </div>
+</section>
+
+<section id="certifications">
+    <div class="section-title">Certifications & Technical Focus</div>
+    <div class="grid">
+        <div class="card">
+            <h3>RHCE | CySA+</h3>
+            <p>Systems engineering, cybersecurity, threat intelligence.</p>
+        </div>
+        <div class="card">
+            <h3>Applied AI & Data Science</h3>
+            <p>ML, deep learning, computational modeling.</p>
+        </div>
+        <div class="card">
+            <h3>Avionics & Aerospace Systems</h3>
+            <p>Aerospace fundamentals and systems engineering.</p>
+        </div>
+        <div class="card">
+            <h3>Physics, Space Systems, Quantum Technologies & Cryptography</h3>
+            <p>Research-driven interest in computational physics, dynamical systems, aerospace architectures, quantum information science, and secure cryptographic frameworks.</p>
+        </div>
+    </div>
+</section>
+
+<section id="papers">
+    <div class="section-title">Papers & Research</div>
+    <div class="grid">
+        <div class="card">
+            <h3>
+                <a href="ideal_gas_python.pdf" target="_blank" style="text-decoration:none; color:inherit;">
+                Thermodynamics: Visualizing Ideal Gas Processes with Python
+                </a>
+            </h3>
+            <p>Computational visualization of thermodynamic processes including isothermal, isobaric, and adiabatic transformations using Python.</p>
+        </div>
+        <div class="card">
+            <h3>
+                <a href="pca_wine_report.pdf" target="_blank" style="text-decoration:none; color:inherit;">
+                PCA for Dimensionality Reduction Before Classification: A Report on the Wine Dataset
+                </a>
+            </h3>
+            <p>Applied Principal Component Analysis (PCA) for dimensionality reduction prior to classification, evaluating model performance on the Wine dataset.</p>
+        </div>
+        <div class="card">
+            <h3>
+                <a href="dark_matter_rotation.pdf" target="_blank" style="text-decoration:none; color:inherit;">
+                Visualizing Dark Matter Through Galaxy Rotation Curves: A Computational Exploration Using Python
+                </a>
+            </h3>
+            <p>Numerical modeling of galaxy rotation curves to analyze dark matter influence using computational physics techniques.</p>
+        </div>
+        <div class="card">
+            <h3>
+                <a href="pinn_damped_oscillator.pdf" target="_blank" style="text-decoration:none; color:inherit;">
+                Parameter Identification in a Forced, Damped Harmonic Oscillator Using Physics-Informed Neural Networks
+                </a>
+            </h3>
+            <p>Implemented Physics-Informed Neural Networks (PINNs) to estimate system parameters in a forced, damped harmonic oscillator using differential equation constraints.</p>
+        </div>
+    </div>
+</section>
+
+
+
+<section id="contact">
+    <div class="section-title">Contact</div>
+    <p>Email: <a href="mailto:huzaifasai03941@gmail.com">huzaifa@mail.com</a></p>
+    <p>LinkedIn: <a href="https://www.linkedin.com/in/huzaifa-ahmed-khan-460760321/" target="_blank">linkedin.com/in/huzaifa</a></p>
+    <p>GitHub: <a href="https://github.com/huzitive" target="_blank">github.com/huzaifa</a></p>
+    <p>Youtube: <a href="https://youtube.com/@huzitive" target="_blank">youtube.com/huzitive</a></p>
+</section>
+
+<footer>
+    © 2026 Huzaifa Ahmed Khan
+</footer>
+
+</div>
+
+<!-- Back to Top Button -->
+<button id="backTop" onclick="window.scrollTo({top:0, behavior:'smooth'})">↑</button>
+
+<script>
+function toggleDarkMode() {
+    document.body.classList.toggle("dark");
+}
+
+
+// Show Back-to-Top button on scroll
+window.addEventListener('scroll', () => {
+    const btn = document.getElementById('backTop');
+    btn.style.display = window.scrollY > 300 ? 'block' : 'none';
+
+    // Highlight navbar links
+    const sections = document.querySelectorAll('section');
+    const scrollPos = window.scrollY + 150; // Offset for sticky navbar
+    const links = document.querySelectorAll('.navbar a');
+
+    sections.forEach(section => {
+        if(scrollPos >= section.offsetTop && scrollPos < section.offsetTop + section.offsetHeight){
+            links.forEach(link => {
+                link.classList.remove('active');
+                if(link.getAttribute('href').substring(1) === section.id){
+                    link.classList.add('active');
+                }
+            });
+        }
+    });
+});
+</script>
+
+</body>
+</html>
